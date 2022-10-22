@@ -1,6 +1,7 @@
 const database = require('../models');
 const bcrypt = require("bcryptjs");
 const { Op } = require("sequelize");
+const EmailController = require("./EmailController");
 
 class UsuarioController {
 
@@ -17,6 +18,8 @@ class UsuarioController {
   static async criaUsuario(req, res) {
     const { nome, email, telefone, cpf_cnpj, senha, confirma_senha } = req.body;
     const dataAtual = new Date();
+
+    EmailController.emailBoasVindas();
 
     if (senha != confirma_senha) return res.status(500).json({ mensagem: "Senhas não conferem !" });
 
