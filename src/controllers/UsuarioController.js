@@ -1,7 +1,9 @@
 const database = require('../models');
 const bcrypt = require("bcryptjs");
+const { Op } = require("sequelize");
 
 class UsuarioController {
+
   static async buscaTodosUsuarios(req, res) {
     try {
       const todosUsuarios = await database.Usuarios.findAll();
@@ -12,28 +14,28 @@ class UsuarioController {
     }
   }
 
-  static geraSenha() {
-    var length = 9;
-    var result = '';
-    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    var charactersLength = characters.length;
-    for (var i = 0; i < length; i++) {
-      result += characters.charAt(Math.floor(Math.random() *
-        charactersLength));
-    }
-    return result;
-  }
-
   static async criaUsuario(req, res) {
-    const { nome, email, telefone, cpf_cnpj } = req.body;
-    const novaSenha = bcrypt.hashSync(UsuarioController.geraSenha(), 8);
+    const { nome, email, telefone, cpf_cnpj, senha, confirma_senha } = req.body;
     const dataAtual = new Date();
+
+    if (senha != confirma_senha) return res.status(500).json({ mensagem: "Senhas não conferem !" });
+
+    const usuarioExistente = await database.Usuarios.findAndCountAll({
+      where: {
+        [Op.or]: { cpf_cnpj, email },
+      }
+    });
+
+    if (usuarioExistente.count > 0) {
+      return res.status(500).json({ mensagem: "Já existe um usuário com este email ou cnpj !" });
+    }
+
     try {
       const usuario = await database.Usuarios.create({
         nome: nome,
         email: email,
-        senha: novaSenha,
-        email: telefone,
+        senha: bcrypt.hashSync(senha, 8),
+        telefone: telefone,
         cpf_cnpj: cpf_cnpj,
         ativo: true,
         administrador: false,
