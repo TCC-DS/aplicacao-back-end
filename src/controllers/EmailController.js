@@ -1,4 +1,4 @@
-const configEmail = require("../../configuracaoEmail");
+const configEmail = require("../config/configuracaoEmail");
 
 class EmailController {
 

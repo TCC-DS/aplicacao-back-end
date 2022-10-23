@@ -1,7 +1,9 @@
 const database = require('../models');
 const bcrypt = require("bcryptjs");
 const { Op } = require("sequelize");
+
 const EmailController = require("./EmailController");
+const SmsController = require("./SmsController");
 
 class UsuarioController {
 
@@ -19,7 +21,6 @@ class UsuarioController {
     const { nome, email, telefone, cpf_cnpj, senha, confirma_senha } = req.body;
     const dataAtual = new Date();
 
-    EmailController.emailBoasVindas();
 
     if (senha != confirma_senha) return res.status(500).json({ mensagem: "Senhas não conferem !" });
 
@@ -49,6 +50,9 @@ class UsuarioController {
       if (!usuario) {
         return res.send("Houve um erro ao salvar o usuario");
       }
+
+      EmailController.emailBoasVindas();
+      SmsController.msgBoasVindas();
 
       return res.status(200).json(usuario);
     }
