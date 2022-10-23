@@ -1,0 +1,45 @@
+.rodape {
+  height: 300px;
+  background-color: var(--Azul-do-fundo-menu);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.lista-imgs-rodape{
+  display: flex;
+  flex-direction: row;
+  width: 10rem;
+  justify-content: space-between;
+}
+
+li {
+  list-style: none;
+  color: var(--Background);
+}
+
+.imgs-rodape{
+  width: 2.5rem;
+}
+
+.lista-links-rodape {
+  display: flex;
+  flex-direction: row;
+  width: 22rem;
+  justify-content: space-between;
+}
+
+
+
+.links-rodape{
+  display: flex;
+  flex-direction: column;
+  gap: .9rem;
+}
+
+.lista-links-rodape-final {
+  align-self: center; 
+  color: var(--Cor-links-menu) !important; 
+}
