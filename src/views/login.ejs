@@ -10,17 +10,21 @@
   <link href="css/cabecalho.css" rel="stylesheet" type="text/css" />
   <link href="css/cards.css" rel="stylesheet" type="text/css">
   <link href="/css/rodape.css" rel="stylesheet" type="text/css" />
-  <link href="css/cadastro.css" rel="stylesheet" type="text/css">
+  <link href="css/login.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+    integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
+    crossorigin="" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
   <script src="js/jquery.js"></script>
 
-  <title>Cadastro</title>
+  <title>Login</title>
 </head>
 
 <body>
   <%- include('./partials/cabecalho.ejs') %>
-    <div class="cadastro">
+    <div class="login">
       <div class="formulario">
-        <div class="div-barra-progresso">
+        <!-- <div class="div-barra-progresso">
           <ul class="barra-de-progresso">
             <li class="li-barra-progresso ativo">
               SUAS INFORMAÇÕES
@@ -32,34 +36,31 @@
               ACESSE A PLATAFORMA
             </li>
           </ul>
-        </div>
+        </div> -->
         <div class="formulario">
-          <div class="input-formulario">
-            <label for="nome">NOME COMPLETO</label>
-            <input type="text" name="nome">
+          <div class="titulo">
+            <h1>Bem vindo de volta</h1>
+            <p>Faça login para gerenciar sua conta.</p>
           </div>
           <div class="input-formulario">
             <label for="email">EMAIL</label>
             <input type="text" name="email">
           </div>
           <div class="input-formulario-2">
-            <div class="campos">
-              <label for="cpf">CPF</label>
-              <input type="text" name="cpf">
-            </div>
-            <div class="campos">
-              <label for="tel">TELEFONE COM DDD</label>
-              <input type="text" name="tel">
+            <div class="senha">
+              <label for="senha">SENHA</label>
+              <input type="text" name="senha">
+              <img src="/img/icons/olhos-fechados.svg" class="vizualizador olhos-fechados"></img>
             </div>
           </div>
-          <div class="info">
+          <!-- <div class="info">
             <p>Ao preencher o formulário você permite que a salve <a href="#">suas informações.</a>
             </p>
-          </div>
-          <button class="btn-plano btn-effect-meio pagamento">IR PARA PAGAMENTO</button>
+          </div> -->
+          <button class="btn-plano btn-effect-meio pagamento">ENTRAR</button>
         </div>
       </div>
-      <img class="img-cadastro" src="/img/img-cadastro.png">
+      <img class="img-login" src="/img/img-login.png">
     </div>
     <%- include('./partials/rodape.ejs') %>
       <script src="/js/index.js"></script>

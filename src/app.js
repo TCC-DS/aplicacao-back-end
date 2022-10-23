@@ -18,6 +18,6 @@ app.get("/", (_req, res) => {
 });
 
 
-app.listen(port, () => console.log(`servidor rodando na porta ${port}`));
+app.listen(port, () => console.log(`servidor rodando http://localhost:3333/`));
 
 module.exports = app;

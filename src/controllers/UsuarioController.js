@@ -7,6 +7,10 @@ const SmsController = require("./SmsController");
 
 class UsuarioController {
 
+  static index(req, res) {
+    res.render("cadastro");
+  }
+
   static async buscaTodosUsuarios(req, res) {
     try {
       const todosUsuarios = await database.Usuarios.findAll({

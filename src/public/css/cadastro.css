@@ -1,11 +1,13 @@
 .cadastro {
+  position: relative;
+  min-height: 70vh;
   width: 100%;
   display: flex;
-  width: 100%;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   padding: 0 8rem;
+  margin: 0;
 }
 
 /* PROGRESS BAR */
@@ -163,4 +165,9 @@ p > a {
 
 .campos {
   width: 100%;
+}
+
+/* imagem cadastro */
+.img-cadastro {
+  width: 28rem;
 }
