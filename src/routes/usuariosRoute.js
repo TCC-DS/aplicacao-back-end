@@ -10,9 +10,9 @@ router.post('/cadastro', UsuarioController.criaUsuario);
 
 //Login
 router.get('/login', LoginController.index);
-//router.post('/login', LoginController.criaUsuario);
+router.post('/login', LoginController.realizaLogin);
 
-router.post('/usuarios', UsuarioController.buscaTodosUsuarios);
+router.get('/usuarios', UsuarioController.buscaTodosUsuarios);
 router.get('/usuariosDesativados', UsuarioController.buscaTodosUsuariosDesativados);
 router.put('/usuarios/:id', UsuarioController.atualizaUsuario);
 router.put('/desativaUsuarios/:id', UsuarioController.desativaUsuario);

@@ -8,10 +8,25 @@ class LoginController {
     res.render("login");
   }
 
-  static realizaLogin(req, res) {
+  static async realizaLogin(req, res) {
+    const { email, senha } = req.body;
 
+    const usuario = await database.Usuarios.findOne({
+      where: {
+        email,
+      },
+    });
+
+    if (!usuario) {
+      return res.status(401).json({ mensagem: `usuário ou senha invalidos` });
+    }
+    const resultado = bcrypt.compareSync(senha, usuario.senha);
+
+    if (!resultado) {
+      return res.status(401).json({ mensagem: `usuário ou senha invalidos` });
+    }
+    return res.status(200).json({ mensagem: `usuário autenticado` });
   }
-
 };
 
 module.exports = LoginController;

@@ -90,7 +90,7 @@ p > a {
   padding-top: .5rem;
 }
 
-.senha {
+ .divsenha{
   width: 100%;
 }
 
@@ -103,9 +103,6 @@ p > a {
   position: relative;
   bottom: 30px;
   left: 93%;
-}
-
-.olhos-fechados, .olhos-abertos {
   opacity: 50%;
   cursor: pointer;
 }
