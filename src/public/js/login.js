@@ -19,7 +19,7 @@ $('#olhos').click(function () {
   }
 });
 
-async function realizaCadastro(nome, email, senha, telefone, cpf_cnpj) {
+async function realizaLogin(email, senha,) {
   const dados = {
     email: email,
     senha: senha

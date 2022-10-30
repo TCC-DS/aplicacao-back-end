@@ -132,10 +132,14 @@ function validaCep(elemento) {
 
 }
 
-async function realizaLogin(email, senha) {
+async function realizaCadastro(nome, email, telefone, cpf, senha, confirmaSenha) {
   const dados = {
+    nome: nome,
     email: email,
-    senha: senha
+    telefone: telefone,
+    cpf_cnpj: cpf,
+    senha: senha,
+    confirma_senha: confirmaSenha,
   };
 
   try {
@@ -176,7 +180,14 @@ async function realizaLogin(email, senha) {
 }
 
 $("#btn-pagamento").click(() => {
-  alert("teste")
+  const nomeCompleto = $("#nome").val();
+  const email = $("#email").val();
+  const senha = $("#senha").val();
+  const confirmaSenha = $("#confirmasenha").val();
+  const cpf = $("#cpf").val();
+  const telefone = $("#tel").val();
+
+  realizaCadastro(nomeCompleto, email, telefone, cpf, senha, confirmaSenha);
 });
 
 

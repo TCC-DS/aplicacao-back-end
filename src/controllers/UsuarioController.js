@@ -29,6 +29,10 @@ class UsuarioController {
     const { nome, email, telefone, cpf_cnpj, senha, confirma_senha } = req.body;
     const dataAtual = new Date();
 
+    console.log("senha " + senha)
+    console.log("confirma_senha " + confirma_senha)
+
+
 
     if (senha != confirma_senha) return res.status(500).json({ mensagem: "Senhas não conferem !" });
 
@@ -62,7 +66,7 @@ class UsuarioController {
       EmailController.emailBoasVindas();
       SmsController.msgBoasVindas();
 
-      return res.status(200).json(usuario);
+      return res.status(200).json({ mensagem: "Usuário cadastrado com sucesso !" });
     }
     catch (error) {
       return res.status(500).json(error.message);
