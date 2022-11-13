@@ -1,5 +1,5 @@
 const SerpApi = require('google-search-results-nodejs');
-const { differenceInMinutes } = require('date-fns');
+const { differenceInMinutes, format } = require('date-fns');
 const ultimaAtualizacao = undefined ?? Date.now();
 var dadosEnviados = false;
 
@@ -10,6 +10,8 @@ class HomeController {
 
   static buscaDados(_req, res) {
     const dataAtual = Date.now();
+    const atualizacao = format(ultimaAtualizacao, "HH:mm")
+
 
     if (dadosEnviados == false || differenceInMinutes(dataAtual, ultimaAtualizacao) >= 30) {
       dadosEnviados = true;
@@ -44,12 +46,13 @@ class HomeController {
       };
 
       pegaResultados().then((dados) => {
-        const { placeInfo, reviews } = dados
-        return res.status(200).json({ mensagem: placeInfo, reviews });
+        dados.ultimaAtualizacao = atualizacao
+        return res.status(200).json({ dados: dados });
       })
 
     }
-    else return res.status(500).json({ mensagem: "Nada de novo por aqui" });
+
+    else return res.status(200).json({ dados: { mensagem: "Nada de novo por aqui", ultimaAtualizacao: atualizacao } });
   }
 }
 

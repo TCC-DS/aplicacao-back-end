@@ -25,14 +25,14 @@ function menuBtnChange() {
 async function buscaDados() {
   try {
     const requisicao = await axios.get('/home/buscaDados');
-    console.log(requisicao.data.mensagem)
+    console.log(requisicao.data.dados)
     $("#container").removeClass("body_loading");
     $("#img_loading").css("display", "none");
-    return requisicao.data.mensagem;
+    return requisicao.data.dados;
   } catch (erro) {
     $("#container").removeClass("body_loading");
     $("#img_loading").css("display", "none");
-    return erro.response.data.mensagem;
+    return erro.response.data.dados;
   }
 }
 
