@@ -1,3 +1,11 @@
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 2500,
+  timerProgressBar: true,
+});
+
 let sidebar = document.querySelector(".sidebar");
 let closeBtn = document.querySelector("#btn");
 let searchBtn = document.querySelector(".bx-search");
@@ -27,10 +35,32 @@ async function buscaDados() {
   try {
     const requisicao = await axios.get('/home/buscaDados');
 
+    if (requisicao.status != 200) {
+      Toast.fire({
+        icon: 'error',
+        title: 'Dados ainda não podem serem atualizados !!',
+      })
+
+      return JSON.parse(localStorage.getItem('dados'));
+    }
+    localStorage.setItem('dados', JSON.stringify(requisicao.data.dados));
+
+    Toast.fire({
+      icon: 'success',
+      title: 'Dados atualizados com sucesso !!'
+    });
+
     return requisicao.data.dados;
+
   } catch (erro) {
 
-    return erro.response.data.dados;
+    Toast.fire({
+      icon: 'error',
+      title: 'Dados ainda não podem serem atualizados !!',
+    })
+
+    return JSON.parse(localStorage.getItem('dados'));
+
   } finally {
     $("#container").removeClass("body_loading");
     $("#img_loading").css("display", "none");
@@ -53,7 +83,6 @@ function graficoMedia(avaliacoes) {
       'Muito Alta',
     ],
     datasets: [{
-      label: 'My First Dataset',
       data: [avaliacoes[1], avaliacoes[2], avaliacoes[3], avaliacoes[4], avaliacoes[5]],
       backgroundColor: [
         '#071E22',
@@ -62,13 +91,28 @@ function graficoMedia(avaliacoes) {
         '#36A2EB',
         '#1CC88A',
       ],
-      hoverOffset: 5
-    }]
+      hoverOffset: 5,
+
+    }],
+
   };
 
   const config_media = {
     type: 'doughnut',
     data: data_media,
+    // plugins: [ChartDataLabels],
+    // options: {
+    //   plugins: {
+    //     legend: {
+    //       display: false
+    //     }
+    //   },
+    //   scales: {
+    //     y: {
+    //       beginAtZero: true
+    //     }
+    //   },
+    // },
   };
   const grafico_media = new Chart(
     document.getElementById('grafico_media'),
@@ -112,7 +156,6 @@ function graficoBarra(avaliacoes) {
 $(document).ready(() => {
 
   buscaDados().then(dados => {
-
     const { reviews: total, rating: media } = dados.placeInfo;
     const { ultimaAtualizacao, reviews } = dados;
     const mediaAvalicacoes = {
