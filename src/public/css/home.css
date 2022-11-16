@@ -49,6 +49,15 @@
 .sidebar.open .logo-details #btn{
   text-align: right;
 }
+.logo-details{
+  font-size: 2rem;
+  font-style: oblique;
+}
+
+.logo-details img{
+  transform: rotate(183deg);
+}
+
 .sidebar i{
   color: #fff;
   height: 60px;
@@ -224,6 +233,7 @@
   width: calc(100% - 78px);
   transition: all 0.5s ease;
   z-index: 2;
+  padding-bottom: 2rem;
 }
 .sidebar.open ~ .home-section{
   left: 250px;
@@ -233,7 +243,7 @@
   color: var(--Azul-do-fundo-menu);
   font-size: 25px;
   font-weight: 500;
-  margin: 18px
+  margin: 0.5rem;
 }
 
 .text{
@@ -260,7 +270,7 @@
 
 .cards {
   width: 100%;
-  height: 200px;
+  height: 12rem;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -322,7 +332,9 @@
 
 .graficos{
   display: flex;
-  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding: 0 2rem;
 }
 
 .grafico_media{
@@ -330,7 +342,7 @@
   flex-direction: column;
   text-align: center;
   padding: 1rem;
-  gap: 1rem;
+  gap: 2rem;
   width: 30%;
   background: var(--Background);
   border-radius: 8px;
@@ -343,7 +355,7 @@
   text-align: center;
   padding: 1rem;
   gap: 1rem;
-  width: 60%;
+  width: 67%;
   background: var(--Background);
   border-radius: 8px;
   border: 0.0625rem solid transparent;
@@ -375,4 +387,78 @@
 .body_loading{
   opacity: 0.5;
   cursor: wait;
+}
+
+/* SCROLL */
+
+.scrollbar{
+  height: 24.5rem;
+  width: 97%;
+  overflow-y: scroll;
+  display: inline-block;
+  margin: 1rem;
+}
+
+#scroll::-webkit-scrollbar{
+  border-radius: 10px;
+  width: 10px;
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+#scroll::-webkit-scrollbar-thumb{
+  border-radius: 10px;
+  width: 10px;
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  background-color: #808080;
+}
+
+/* comentarios */
+
+.comentarios{
+  display: flex;
+  flex-direction: column;
+  width: 67%;
+  background: var(--Background);
+  border-radius: 8px;
+  border: 0.0625rem solid transparent;
+  padding: 0 1rem;
+}
+
+.titulo_avaliacoes{
+  text-align: center;
+  margin-top: 1rem;
+  background-color: #f8f9fc;
+  color: var(--Azul-do-fundo-menu);
+  border-radius: 8px;
+  padding: 6px 0;
+}
+
+.div_resposta {
+  background-color: #f8f9fc;
+  color: var(--Azul-do-fundo-menu);
+  border-radius: 8px;
+  height: 7rem;
+  margin: 1rem 2rem;
+  padding: 1rem;
+  display: flex;
+  gap:2rem;
+}
+
+.perfil{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.avaliacao_nome {
+  font-weight: 600;
+}
+
+#img_perfil {
+  object-fit: scale-down;
+  object-position: center;
+}
+
+#tempo {
+  padding-left: 1rem;
 }

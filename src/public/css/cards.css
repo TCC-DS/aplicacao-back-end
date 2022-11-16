@@ -1,8 +1,17 @@
+
+#planos {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    background-image: url('https://i0.wp.com/brasa.org.br/wp-content/uploads/2019/04/circle-background-pattern.png?ssl=1');
+    z-index: -1;
+}
 .cards{
     padding: 5rem 0;
     display: flex;
-    justify-content: space-evenly;
-    gap: 1rem;
+    justify-content: center;
+    gap: 2rem;
 }
 .card{
     width: 22.3rem;
@@ -12,6 +21,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    
     box-shadow: -10px 0px 13px -7px rgba(206,206,206,0.25), 10px 0px 13px -7px rgba(206,206,206,0.25), 1px 4px 10px -2px rgba(206,206,206,0.25);
 }
 

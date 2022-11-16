@@ -1,3 +1,15 @@
+.logo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 1.6rem;
+  font-style: oblique;
+}
+
+.logo img {
+  transform: rotate(183deg);
+}
 .menu{
   background-color: var(--Azul-do-fundo-menu);
   display: flex;

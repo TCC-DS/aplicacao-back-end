@@ -27,7 +27,7 @@
         <img class="bx bxl-c-plus-plus icon"
           src="https://www.netsted.co.za/wp-content/uploads/2017/05/cropped-favicon-transparent-1.png" alt=""
           width="50px">
-        <div class="logo_name">Nova</div>
+        <div class="logo_name">ova</div>
         <i class='bx bx-menu' id="btn"></i>
       </div>
       <ul class="nav-list">
@@ -50,13 +50,7 @@
           </a>
           <span class="tooltip">Usuario</span>
         </li>
-        <li>
-          <a href="#">
-            <i class='bx bx-chat'></i>
-            <span class="links_name">Mensagens</span>
-          </a>
-          <span class="tooltip">Mensagens</span>
-        </li>
+
         <li>
           <a href="#">
             <i class='bx bx-cog'></i>
@@ -66,7 +60,7 @@
         </li>
         <li class="profile">
           <div class="profile-details">
-            <!--<img src="profile.jpg" alt="profileImg">-->
+            <!-- <img src="profile.jpg" alt="profileImg"> -->
             <div class="name_job">
               <div class="name">Alex</div>
               <div class="job">Donizete</div>
@@ -88,7 +82,7 @@
         <div class="cards_reviews card_total">
           <h3 class="titulo_card titulo_total">Total de avaliações</h3>
           <div class="div_reviews">
-            <span>100</span>
+            <span id="total_avaliacoes">0</span>
             <img
               src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAAAXNSR0IArs4c6QAAAq9JREFUWEfllsuOTUEUhr9OMNUPIHGZMOm4vAAmpngCTJi5zAnCA2DGBE+AqQleQCQmTFwSD8AUCfmkqrNOnap96uyzJR0qqXTXPlVr/fX/61JrbLGxtsXw8E8A2gMcBY4B/p+nZH8K8yXwKq27hViGobPAmQSk2wEgsEfA455DPYBk4mFiosdma88b4Bzg3+ZYBOgOcKly+lm6ucadX9OedeBQml7kZOWsNq+0EA0BkmYlyuMboDFnBrCIMQFeTnNn2Kxt2ZobLUAlMzJiDPUCKR0JTBCRsbsJ6MzeGiCpfhF2GYyCmWKUrB9P0m/argEydXenHTJzagokwcbTwJS+9kb7JSCdP0kbjBlrzFiZWvdQPoHkmJphqQQUKb0J3KhYPQHcA/alcnCh2HM/BewH4CLwvJFpOXtnQqIEZBGzCjvm9E3f3wH7gxOzxYs4jDVrVh7vgQMVQDFOreau/4wS0K9wuJWB34HtYd814HZaXwVuhd9+ADsa2lV9jQGkJOeTk5/AEeBtWm8Ar4Ftaf0AKCXN+LoAxQw7PFDmlWYXYBZmMNmRoKw3X4KUJUndkvUEdUOBpT7HwjsY1DEoTXdrxN9I+4+A6e84DVibqkHtxyhbs+csxcfs5lgYP5eviFomxeKoqSlBjWodGUTs9N7KejNWPuWxPsU21N1cM8HlbQRjMGqoF5hArMg+QXLMaL/ZsMc80ATjAytX5xghOj0YHmi1xtxqSc2grtUMnecXgL9Ho9YUG3JkoBbzBrAAV3rCRsO1GmXzvb4g4+xVnq0xOnd0kWTxQHRuHCnNZlNMG2XBsqGsJoLN2nX3GAuodCALytEb7E2AUwAaDNJuagYqdctGGS++KGVFWSYbYxmaTKLyJmMATSrRKoCsttaQSSVaBdBkcTJkaBnJ/k9AvwGY45IlGySaRAAAAABJRU5ErkJggg==" />
           </div>
@@ -96,7 +90,7 @@
         <div class="cards_reviews card_media">
           <h3 class="titulo_card titulo_media">Média das avaliações</h3>
           <div class="div_reviews">
-            <span>4,2</span>
+            <span id="media_avaliacoes">0.0</span>
             <img
               src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAAAXNSR0IArs4c6QAAAoZJREFUWEftl40xJUEQx/8vAkRwROBE4C4CRIAIEAEi4CI4IkAEiAARcBEgAuqnplXrN7Mzu/uqTild9Wrfx27Pb/79Mf0m+mQ2+WQ8+pJAi5Iuk9K/JT2MUX0WCp1I2kwQp5K2/icQ6twHgKUxKo1V6FjSTgD6I2l3qEpjgOaTOly9PUlCJa69bQzQgaT9tOK/dP2RrnuSUK+3jQGimgxgO638N135DZV621AgKskWf5ZkYSNMc4kCSCqwlw0FupW0nFY6lET4MB9G7lnpRSNlO/UvSS+SuJr9dCr496hD6VsCoxThMpX4HjDMv+fzVfr+2kNHhbhptceuco3QN8oWV6xJh3+zCORzoOaMykKtWN6ohCqW8DU/PgengHyymiMaHbuwhQlJ63lFOHlhgOJ/LRB+SP5cUkcodoukgxqdW3w9VaZVJMrwneVSNmT2/Kyhoj9gKBpL+HfurrKPTgjTRs5JJUk4147cPeQeykzB5JI6+o5QhI3wZZ1lwGLF3SVliuFvaYxUEnG23tLa8OJmqjAtCtmmkfgsfUByq5yuaPlQAcPGqtaiEE78kdA6FcbhrWmtppsknbv+0efQ9BMBBYGfTmsF8h08jqiE06qIOcgv6ifKpkmyBYjY36Rt+TZPg2MEAcgbQKjIJnzuNc1ILUC+Wi7SIrHrxjAAAxRwTA5m1T8ALUC+lzD7MAdFVQDF4jkF0IKbIKqjbQuQT8yoBCFEQcsbQNmA9ax4vylcTOwaEHnyWHga58Dkxg+golrmpnPNGpBPSnMYVSnttqRWZ/nXgHxDZOGSKiUoFI5q+Rl86rkaEN3W5hWOgmpjK5Chlv1PY+woDng1oFpjnfnv30A1SV8BwD+LJQdbFB0AAAAASUVORK5CYII=" />
           </div>
@@ -105,7 +99,7 @@
         <div class="cards_reviews card_atualizacao">
           <h3 class="titulo_card titulo_atualizacao">Ultima Atualização</h3>
           <div class="div_reviews">
-            <span>14:02</span>
+            <span id="ultima_atualizacao">00:00</span>
             <img
               src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAAAXNSR0IArs4c6QAAAnpJREFUWEftmNExRkEMhY8KUAEqQAWoABWgAlSAClABKkAHVIAK0AEVMJ/ZNZF/92728mCMvNzhZjfnnpxNsv+UfplN/TI8+jOAliRtSeI5k56QfS/pJT0v0rMrCb0MHUraTSAigQB3Iuko4oxPFNCGpGNJ89GNnd+TpH1JV631EUCwcuA2ek6b30giGKnCSCGgVyXxEXNuHXsNstUCdJ60kvcFCJvy/4htJ38LjLU7tcVDgDwz15IIgC56DNEDYt0sgiX2n7AaIOi+NN6cGMB8xzzbmyVN1QChi0wzzACwZuhlJb28lYSuaoaoM1PEWPCOJUA2VWgGoQ6lyfpXU5ECkz6ATKe/J/xLgAieFyC+loB7AIGD1J8lQMSatSx5QLBxlxxgJ1J3egGxvZXEsq3oHhBVlUqMnUraC6h4DKBqHA8IQWaBFk9BAeAYQPYUcxA4GB/mAVFxF9O7L1QOMDUGkJUGMYlVBPRmAreqeHa1gDjWMBuxYiwfdAwgdEbjzTbYGoxfCNCYlBHDV+EWKJuyBzNPTWhojKgtMwxtEabCoh5z7K1ePFNrlVYSPvaWymKvCag1gxqq8uHCSLze1lHCSF2pNVnbOl79ONxqrnwJNaJ3BqoRSXN9NCBCzZXNLKU9taWVUTt+FHtldEBrHeMWkFJp6BrQ2MCPsHwdQu1NH2li3LBDXvcIW6stpBKgjLQRQ8BUcUBlGxyHI/2qdA0CGIxxktCCvQYx+uZrkJ+nWhNl10WRYubvWRGW8AE0Pe9HLoo2KGyxcR5xW4CoM3xI8cpTWhxJWWkdFR195B8b8gxFo8w/NnAycypbwD/fjwUUDtDr+A+oxdg7vKCZJSqiUPwAAAAASUVORK5CYII=" />
           </div>
@@ -114,12 +108,17 @@
       <div class="graficos">
 
         <div class="grafico_todas_avalicacoes">
-          <h2 class="titulo_grafico">Todas Avaliações</h2>
+          <h2 class="titulo_grafico">Histórico</h2>
           <canvas id="grafico_todas_avalicacoes"></canvas>
         </div>
         <div class="grafico_media">
           <h2 class="titulo_grafico">Média</h2>
           <canvas id="grafico_media"></canvas>
+        </div>
+        <div class="comentarios">
+          <h2 class="titulo_avaliacoes">Comentários</h2>
+          <div class="scrollbar" id="scroll">
+          </div>
         </div>
 
 
