@@ -150,6 +150,11 @@ $(document).ready(() => {
       for (let i = 1; i <= item.avaliacao; i++) {
         estrelas += "<i class='bx bxs-star' style='color:#ffcd56'></i>"
       }
+      if (item.avaliacao < 5) {
+        for (let i = item.avaliacao; i < 5; i++) {
+          estrelas += "<i class='bx bxs-star' style='color:#677788'></i>"
+        }
+      }
       const divPerfil =
         `
         <div class='div_resposta' >

@@ -35,7 +35,7 @@ async function realizaLogin(email, senha,) {
       timer: 1500,
       timerProgressBar: true,
       didOpen: setTimeout(() => {
-        window.location.href = 'http://localhost:3333/'
+        window.location.href = 'http://localhost:3333/home'
       }, 1600)
     });
 
