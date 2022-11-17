@@ -25,6 +25,15 @@ class LoginController {
     if (!resultado) {
       return res.status(401).json({ mensagem: `usuário ou senha invalidos` });
     }
+
+    req.session.usuario = {
+      id: usuario.id,
+      nome: usuario.nome,
+      admin: usuario.administrador,
+    };
+
+    console.log(req.session.usuario);
+
     return res.status(200).json({ mensagem: `usuário autenticado` });
   }
 };
