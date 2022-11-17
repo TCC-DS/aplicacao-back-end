@@ -89,10 +89,10 @@
 /* FORMULÁRIO */
 
 .formulario {
-gap: 2rem;
-display: flex;
-flex-direction: column;
-width: 70%;
+  gap: 2rem;
+  display: flex;
+  flex-direction: column;
+  width: 65%;
 }
 
 .input-formulario , .cpf, .tel , label{
