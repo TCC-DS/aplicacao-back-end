@@ -201,7 +201,7 @@ $(document).ready(() => {
       const divPerfil =
         `
         <div class='div_resposta' >
-          <img id='img_perfil' src='${item.foto}'>
+          <img id='img_perfil' src='${item.foto}' referrerpolicy='no-referrer'>
           <div class='perfil'>
             <span class='avaliacao_nome' id='nome_perfil'>${item.usuario}</span>
             <div class='avaliacao'>

@@ -15,7 +15,7 @@ class HomeController {
 
     if (dadosEnviados == false || differenceInMinutes(dataAtual, ultimaAtualizacao) >= 30) {
       dadosEnviados = true;
-      const search = new SerpApi.GoogleSearch("f34edcd03c0d6264894319ba5051ebb368d153e42e1dc4bb2a5a78b021ea3be9");
+      const search = new SerpApi.GoogleSearch("36882d91d3ec14f3514c5b613fa94bc526e78997b110d4bba49d7dec30683702");
 
       const config = {
         engine: "google_maps_reviews",
@@ -48,8 +48,8 @@ class HomeController {
       pegaResultados().then((dados) => {
         dados.ultimaAtualizacao = atualizacao
         // Mudar depois
-        // return res.status(200).json({ dados: dados });
-        return res.status(401).json({ dados: { mensagem: "Nada de novo por aqui", ultimaAtualizacao: atualizacao } });
+        return res.status(200).json({ dados: dados });
+        // return res.status(401).json({ dados: { mensagem: "Nada de novo por aqui", ultimaAtualizacao: atualizacao } });
       })
 
     }
