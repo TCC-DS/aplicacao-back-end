@@ -36,6 +36,21 @@ class LoginController {
 
     return res.status(200).json({ mensagem: `usuário autenticado` });
   }
+
+  static logOut(req, res) {
+    if (req.session) {
+      req.session.destroy(err => {
+        if (err) {
+          return res.status(400).json({ mensagem: 'Não foi possivel realizar o log out' });
+        } else {
+          return res.status(200).json({ mensagem: 'Log out realizado com sucesso !' });
+        }
+      });
+    } else {
+      res.end()
+    }
+  }
+
 };
 
 module.exports = LoginController;

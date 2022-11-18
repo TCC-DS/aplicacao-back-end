@@ -153,8 +153,41 @@ function graficoBarra(avaliacoes) {
   );
 };
 
-$(document).ready(() => {
+async function realizaLogOut() {
+  try {
+    const requisicao = await axios.delete('/login');
 
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 1500,
+      timerProgressBar: true,
+      didOpen: setTimeout(() => {
+        window.location.href = 'http://localhost:3333/'
+      }, 1600)
+    });
+
+    Toast.fire({
+      icon: 'success',
+      title: requisicao.data.mensagem
+    });
+
+    return requisicao.data.dados;
+
+  } catch (erro) {
+    Toast.fire({
+      icon: 'error',
+      title: erro.response.data.mensagem,
+    })
+
+  } finally {
+    $("#container").removeClass("body_loading");
+    $("#img_loading").css("display", "none");
+  }
+}
+
+$(document).ready(() => {
   buscaDados().then(dados => {
     const { reviews: total, rating: media } = dados.placeInfo;
     const { ultimaAtualizacao, reviews } = dados;
@@ -222,3 +255,7 @@ $(document).ready(() => {
     graficoMedia(mediaAvalicacoes);
   });
 });
+
+$("#log_out").click(() => {
+  realizaLogOut();
+})

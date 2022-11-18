@@ -55,6 +55,7 @@ class HomeController {
     }
     else return res.status(401).json({ dados: { mensagem: "Nada de novo por aqui", ultimaAtualizacao: atualizacao } });
   }
+
 }
 
 

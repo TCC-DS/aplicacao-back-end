@@ -251,7 +251,7 @@
   gap: 1rem;
 }
 
-.text img{
+#log_out,.text img{
   cursor: pointer;
 }
 
