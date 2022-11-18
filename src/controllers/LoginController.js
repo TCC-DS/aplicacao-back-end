@@ -29,10 +29,8 @@ class LoginController {
     req.session.usuario = {
       id: usuario.id,
       nome: usuario.nome,
-      admin: usuario.administrador,
+      email: usuario.email,
     };
-
-    console.log(req.session.usuario);
 
     return res.status(200).json({ mensagem: `usuário autenticado` });
   }

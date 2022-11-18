@@ -8,9 +8,10 @@ class HomeController {
     return res.render("home")
   }
 
-  static buscaDados(_req, res) {
+  static buscaDados(req, res) {
+    const { nome } = req.session.usuario;
     const dataAtual = Date.now();
-    const atualizacao = format(ultimaAtualizacao, "HH:mm")
+    const atualizacao = format(ultimaAtualizacao, "HH:mm");
 
 
     if (dadosEnviados == false || differenceInMinutes(dataAtual, ultimaAtualizacao) >= 30) {
@@ -47,13 +48,15 @@ class HomeController {
 
       pegaResultados().then((dados) => {
         dados.ultimaAtualizacao = atualizacao
+        dados.nome = nome
+
         // Mudar depois
         return res.status(200).json({ dados: dados });
         // return res.status(401).json({ dados: { mensagem: "Nada de novo por aqui", ultimaAtualizacao: atualizacao } });
       })
 
     }
-    else return res.status(401).json({ dados: { mensagem: "Nada de novo por aqui", ultimaAtualizacao: atualizacao } });
+    else return res.status(401).json({ dados: { mensagem: "Nada de novo por aqui", ultimaAtualizacao: atualizacao, nome: nome } });
   }
 
 }

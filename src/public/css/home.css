@@ -224,6 +224,9 @@
   width: 50px;
   background: none;
 }
+.profile {
+  display: flex;
+}
 .home-section{
   position: relative;
   background: #ebecef;

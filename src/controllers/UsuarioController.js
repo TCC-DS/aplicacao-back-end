@@ -29,11 +29,6 @@ class UsuarioController {
     const { nome, email, telefone, cpf_cnpj, senha, confirma_senha } = req.body;
     const dataAtual = new Date();
 
-    console.log("senha " + senha)
-    console.log("confirma_senha " + confirma_senha)
-
-
-
     if (senha != confirma_senha) return res.status(500).json({ mensagem: "Senhas não conferem !" });
 
     const usuarioExistente = await database.Usuarios.findAndCountAll({
@@ -54,7 +49,7 @@ class UsuarioController {
         telefone: telefone,
         cpf_cnpj: cpf_cnpj,
         ativo: true,
-        administrador: false,
+        administrador: 0,
         createdAt: dataAtual,
         updatedAt: dataAtual,
       });

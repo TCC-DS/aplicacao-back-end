@@ -253,6 +253,8 @@ $(document).ready(() => {
 
     graficoBarra(dataAvaliacoes);
     graficoMedia(mediaAvalicacoes);
+
+    $("#nome_usuario").text(dados.nome)
   });
 });
 
