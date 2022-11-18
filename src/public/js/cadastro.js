@@ -7,17 +7,14 @@ var mensagemErro6 = document.getElementById('erro6');
 var mensagemErro7 = document.getElementById('erro7');
 var senha = document.getElementById('senha');
 
-
-
 function validaNome(elemento) {
-
-  $(elemento).css("border-color", "#dde4e8")
+  $(elemento).css("border-color", "#dde4e8");
 
   if (elemento.value.length < 8) {
-    mensagemErro1.innerHTML = `<div class="erroM"><p>NOME inválido. Tente novamente!</p></div>`
-    $(elemento).css("border-color", "red")
-  } else {
-    mensagemErro1.innerHTML = ``
+    $(elemento).css("border-color", "red");
+  }
+  else {
+    $(elemento).css("border-color", "#1CC88A");
   }
 }
 
@@ -29,27 +26,26 @@ function validaEmail(elemento) {
   $(elemento).css("border-color", "#dde4e8")
 
   if (elemento.value.length < 8 || !regexEmail(elemento.value)) {
-    mensagemErro2.innerHTML = `<div class="erroM"><p>EMAIL inválido. Tente novamente!</p></div>`
     $(elemento).css("border-color", "red")
   }
   else {
-    mensagemErro2.innerHTML = ``
+    $(elemento).css("border-color", "#1CC88A");
   }
+
 }
 
 function validaSenha(elemento) {
 
   let regexSenha = (senha) => {
-    return senha.match(/^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})/)
+    return senha.match(/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W+)(?=^.{6,50}$).*$/g)
   }
   $(elemento).css("border-color", "#dde4e8")
 
   if (elemento.value.length < 8 || !regexSenha(elemento.value)) {
-    mensagemErro3.innerHTML = `<div class="erroM"><p>SENHA inválido. Tente novamente!</p></div>`
     $(elemento).css("border-color", "red")
   }
   else {
-    mensagemErro3.innerHTML = ``
+    $(elemento).css("border-color", "#1CC88A");
   }
 }
 
@@ -57,45 +53,42 @@ function validaComfirmaSenha(elemento) {
 
   $(elemento).css("border-color", "#dde4e8")
 
-  if (elemento.value == senha.value) {
-    mensagemErro7.innerHTML = ``
-  }
-  else {
-    mensagemErro7.innerHTML = `<div class="erroM"><p>SENHA não conferem. Tente novamente!</p></div>`
+  if (elemento.value != senha.value) {
     $(elemento).css("border-color", "red")
   }
+  else {
+    $(elemento).css("border-color", "#1CC88A");
+  }
+
 }
-
-
 
 function validaCPF(elemento) {
   let regexCPF = (cpf) => {
-    return senha.match(/(^\d{3}\.\d{3}\.\d{3}\-\d{2}$)|(^\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}$)/)
+    return cpf.match(/(^\d{3}\.\d{3}\.\d{3}\-\d{2}$)|(^\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}$)/)
   }
   $(elemento).css("border-color", "#dde4e8")
 
   if (elemento.value.length < 8 || !regexCPF(elemento.value)) {
-    mensagemErro4.innerHTML = `<div class="erroM"><p>CEP inválido. Tente novamente!</p></div>`
     $(elemento).css("border-color", "red")
   }
   else {
-    mensagemErro4.innerHTML = ``
+    $(elemento).css("border-color", "#1CC88A");
   }
+
 }
 
 function validaTel(elemento) {
 
   let regexTel = (tel) => {
-    return senha.match(/^(?:\+)[0-9]{2}\s?(?:\()[0-9]{2}(?:\))\s?[0-9]{4,5}(?:-)[0-9]{4}$/)
+    return tel.match(/^\([1-9]{2}\) (?:[2-8]|9[1-9])[0-9]{3}\-[0-9]{4}$/)
   }
   $(elemento).css("border-color", "#dde4e8")
 
   if (elemento.value.length < 8 || !regexTel(elemento.value)) {
-    mensagemErro5.innerHTML = `<div class="erroM"><p>TELEFONE inválido. Tente novamente!</p></div>`
     $(elemento).css("border-color", "red")
   }
   else {
-    mensagemErro5.innerHTML = ``
+    $(elemento).css("border-color", "#1CC88A");
   }
 }
 
@@ -132,6 +125,47 @@ function validaCep(elemento) {
 
 }
 
+function validaCartao(elemento) {
+  $(elemento).css("border-color", "#dde4e8")
+
+  if (elemento.value.length < 17) {
+    $(elemento).css("border-color", "red")
+  }
+  else {
+    $(elemento).css("border-color", "#1CC88A");
+  }
+}
+
+function validaCvv(elemento) {
+  $(elemento).css("border-color", "#dde4e8")
+
+  if (elemento.value.length < 3) {
+    $(elemento).css("border-color", "red")
+  }
+  else {
+    $(elemento).css("border-color", "#1CC88A");
+  }
+}
+
+function validaDataCartao(elemento) {
+  $(elemento).css("border-color", "#dde4e8")
+
+  if (elemento.value.length < 7) {
+    $(elemento).css("border-color", "red")
+  }
+  else {
+    $(elemento).css("border-color", "#1CC88A");
+  }
+}
+
+function validaSelect(elemento) {
+  $(elemento).css("border-color", "#dde4e8")
+
+  if (elemento.value == "0") {
+    $(elemento).css("border-color", "red")
+  }
+}
+
 async function realizaCadastro(nome, email, telefone, cpf, senha, confirmaSenha) {
   const dados = {
     nome: nome,
@@ -156,6 +190,8 @@ async function realizaCadastro(nome, email, telefone, cpf, senha, confirmaSenha)
       }, 1600)
     });
 
+    mudaStatusBarraProgresso();
+
     Toast.fire({
       icon: 'success',
       title: requisicao.data.mensagem
@@ -179,6 +215,73 @@ async function realizaCadastro(nome, email, telefone, cpf, senha, confirmaSenha)
   }
 }
 
+function verificaSelects() {
+  let valido = true;
+  $('select').each(function () {
+    if (this.value == "0") valido = false;
+  });
+  return valido;
+}
+
+function verificaPreenchimentoUsuario(qtdCampos) {
+  let camposValidos = 0;
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 2500,
+    timerProgressBar: true,
+  });
+  $('input').each(function () {
+    if ($(this).css('border-color') == 'rgb(255, 0, 0)') {
+      Toast.fire({
+        icon: 'error',
+        title: 'Preencha os campos com borda em vermelho !',
+      })
+      return false;
+    }
+  });
+
+  $('input').each(function () {
+    if ($(this).css('border-color') == 'rgb(28, 200, 138)') camposValidos++
+  });
+
+  if (camposValidos != qtdCampos) {
+    Toast.fire({
+      icon: 'error',
+      title: 'Preencha todos os campos !',
+    })
+    return false;
+  }
+
+  return true;
+}
+
+function resetaValidacoes() {
+  $("input").each(function () {
+    if ($(this).css('border-color') == 'rgb(28, 200, 138)') {
+      $(this).css('border-color', 'rgb(223,229,233)')
+    }
+  });
+}
+
+function mudaStatusBarraProgresso() {
+  $(".ativo").addClass("concluido");
+  $(".ativo").removeClass("ativo");
+  $(".inativo").addClass("ativo");
+  $(".inativo").removeClass("inativo");
+  $(".li-barra-progresso").addClass("inativo");
+}
+
+$("#btn-usuario").click(() => {
+  if (verificaPreenchimentoUsuario(6)) {
+    mudaStatusBarraProgresso();
+    $("#formulario_usuario").css("display", "none");
+    $("#formulario_pagamento").css("display", "");
+    resetaValidacoes();
+  }
+});
+
 $("#btn-pagamento").click(() => {
   const nomeCompleto = $("#nome").val();
   const email = $("#email").val();
@@ -187,8 +290,40 @@ $("#btn-pagamento").click(() => {
   const cpf = $("#cpf").val();
   const telefone = $("#tel").val();
 
-  realizaCadastro(nomeCompleto, email, telefone, cpf, senha, confirmaSenha);
+  console.log(verificaPreenchimentoUsuario(4))
+  console.log(verificaSelects())
+
+
+  if (verificaPreenchimentoUsuario(4) && verificaSelects()) {
+    mudaStatusBarraProgresso();
+    realizaCadastro(nomeCompleto, email, telefone, cpf, senha, confirmaSenha);
+  }
+
+
 });
+
+$(".mudaValor").change(() => {
+  const planos = {
+    basicoMensal: 49,
+    intermediarioMensal: 69,
+    ultraMensal: 99,
+    basicoAnual: 29,
+    intermediarioAnual: 49,
+    ultraAnual: 59,
+  }
+
+  if ($("#plano").val() != null && $("#formatoPlano").val() != null) {
+    let planoEscolhido = $("#plano").val() + $("#formatoPlano").val();
+    $("#valorPlano").val(planos[planoEscolhido]);
+  }
+})
+
+$(document).ready(() => {
+  $("#cpf").mask('000.000.000-00', { reverse: true });
+  $("#numCartao").mask('0000-0000-0000-0000', { reverse: true });
+  $("#tel").mask('(00) 00000-0000');
+  $("#data").mask('00/0000');
+})
 
 
 

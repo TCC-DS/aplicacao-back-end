@@ -14,6 +14,9 @@
   <script src="js/jquery.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"
+    integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
   <title>Cadastro</title>
 </head>
@@ -23,82 +26,106 @@
     <div class="cadastro">
       <div class="formulario">
         <%- include('./partials/barra-progresso.ejs') %>
-          <div class="formulario">
+          <div class="formulario" id="formulario_usuario">
             <div class="input-formulario">
               <label for="nome">NOME COMPLETO</label>
-              <input type="text" name="nome" id="nome" required onblur="validaNome(this);">
+              <input type="text" name="nome" id="nome" class="formulario_usuario" required onblur="validaNome(this);">
               <div id="erro1"></div>
             </div>
             <div class="input-formulario">
               <label for="email">EMAIL</label>
-              <input type="text" name="email" id="email" required onblur="validaEmail(this);">
+              <input type="text" name="email" id="email" class="formulario_usuario" required
+                onblur="validaEmail(this);">
               <div id="erro2"></div>
             </div>
             <div class="input-formulario">
               <label for="senha">SENHA</label>
-              <input type="password" name="senha" id="senha" required onblur="validaSenha(this);">
+              <input type="password" name="senha" id="senha" class="formulario_usuario" required
+                onblur="validaSenha(this);">
               <div id="erro3"></div>
             </div>
             <div class="input-formulario">
               <label for="confirmasenha">CONFIRMAR SENHA</label>
-              <input type="password" name="confirmasenha" id="confirmasenha" required
+              <input type="password" name="confirmasenha" id="confirmasenha" class="formulario_usuario" required
                 onblur="validaComfirmaSenha(this);">
               <div id="erro7"></div>
             </div>
             <div class="input-formulario-2">
               <div class="campos">
                 <label for="cpf">CPF</label>
-                <input type="text" name="cpf" id="cpf" required onblur="validaCPF(this);">
+                <input type="text" name="cpf" id="cpf" required onblur="validaCPF(this);" class="formulario_usuario">
                 <div id="erro4"></div>
               </div>
               <div class="campos">
                 <label for="tel">TELEFONE COM DDD</label>
-                <input type="text" name="tel" id="tel" required onblur="validaTel(this);">
+                <input type="text" name="tel" id="tel" required onblur="validaTel(this);" class="formulario_usuario">
                 <div id="erro5"></div>
               </div>
+              <input type="hidden" name="validacao_formulario_usuario" id="validacao_formulario_usuario">
             </div>
-            <!-- <div class="input-formulario">
-              <label for="cep">CEP</label>
-              <input type="text" name="cep" id="cep" required onblur="validaCep(this);">
-              <div id="erro6"></div>
-            </div> -->
-
-            <!-- <div class="input-formulario-3">
-
-              <div class="campos">
-                <label for="estado">ESTADO</label>
-                <input type="text" name="estado" id="estado">
-              </div>
-              <div class="campos">
-                <label for="cidade">CIDADE</label>
-                <input type="text" name="cidade" id="cidade">
-              </div>
-
-            </div> -->
-
-            <!-- <div class="input-formulario-3">
-              <div class="campos">
-                <label for="bairro">BAIRRO</label>
-                <input type="text" name="bairro">
-              </div>
-              <div class="campos">
-                <label for="numero">NUMERO</label>
-                <input type="text" name="numero">
-              </div>
-
-            </div> -->
-
-            <!-- <div class="input-formulario">
-              <label for="rua">RUA</label>
-              <input type="text" name="rua" id="endereco">
-            </div> -->
             <div class="info">
               <p>Ao preencher o formulário você permite que a salve <a href="#">suas informações.</a>
               </p>
             </div>
-            <button class="btn-plano btn-effect-meio pagamento" id="btn-pagamento">IR PARA PAGAMENTO</button>
+            <button class="btn-plano btn-effect-meio pagamento" id="btn-usuario">IR PARA PAGAMENTO</button>
+          </div>
+          <div class="formulario" id="formulario_pagamento" style="display: none;">
+            <div class="input-formulario">
+              <label for="numCartao">NÚMERO DO CARTÃO</label>
+              <input type="text" name="numCartao" id="numCartao" required onblur="validaCartao(this);"
+                class="formulario_pagamento">
+            </div>
+            <div class="input-formulario">
+              <label for="nomeCartao">NOME DO CARTÃO</label>
+              <input type="text" name="nomeCartao" required onblur="validaNome(this);" class="formulario_pagamento">
+            </div>
+            <div class="input-formulario-2">
+              <div class="campos">
+                <label for="cvv">CVV</label>
+                <input type="text" name="cvv" maxlength="3" required onblur="validaCvv(this);"
+                  class="formulario_pagamento">
+              </div>
+              <div class="campos">
+                <label for="data">DATA DE EXPIRAÇÃO</label>
+                <input type="text" name="data" id="data" placeholder="MM/YYYY" required onblur="validaDataCartao(this);"
+                  class="formulario_pagamento">
+              </div>
+
+            </div>
+            <div class="input-formulario-2">
+              <div class="campos">
+                <label for="plano">PLANO</label>
+                <select name="plano" id="plano" class="mudaValor">
+                  <option value="0" disabled selected>Selecione um plano</option>
+                  <option value="basico">Básico</option>
+                  <option value="intermediario">Intermediário</option>
+                  <option value="ultra">Ultra</option>
+                </select>
+              </div>
+              <div class="campos">
+                <label for="formatoPlano">FORMATO</label>
+                <select name="formatoPlano" id="formatoPlano" class="mudaValor">
+                  <option value="0" disabled selected>Selecione um formato</option>
+                  <option value="Anual">Anual</option>
+                  <option value="Mensal">Mensal</option>
+                </select>
+              </div>
+            </div>
+            <div class="input-formulario-2">
+              <div class="campos">
+                <label for="valorPlano">Valor</label>
+                <input type="text" name="valorPlano" id="valorPlano" disabled>
+              </div>
+            </div>
+
+            <div class="info">
+              <p>Ao preencher o formulário você permite que a salve <a href="#">suas informações.</a>
+              </p>
+            </div>
+            <button class="btn-plano btn-effect-meio pagamento" id="btn-pagamento">FINALIZAR CADASTRO</button>
           </div>
       </div>
+
       <img class="img-cadastro" src="/img/img-cadastro.png">
     </div>
     <%- include('./partials/rodape.ejs') %>
