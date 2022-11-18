@@ -2,15 +2,15 @@ const configEmail = require("../config/configuracaoEmail");
 
 class EmailController {
 
-  static emailBoasVindas() {
+  static emailBoasVindas(email, nome) {
 
     const mailOptions = {
       from: 'alex.d.goncalves21@gmail.com',
-      to: 'alex.d.goncalves21@gmail.com',
+      to: email,
       subject: 'Que bom ter você com a gente! 💙',
       template: 'boasVindas',
       context: {
-        username: 'alex'
+        username: nome,
       }
     };
 
