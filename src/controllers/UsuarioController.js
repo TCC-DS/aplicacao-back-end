@@ -63,8 +63,8 @@ class UsuarioController {
         return res.send("Houve um erro ao salvar o usuario");
       }
 
-      EmailController.emailBoasVindas();
-      SmsController.msgBoasVindas();
+      EmailController.emailBoasVindas(email, nome);
+      SmsController.msgBoasVindas(telefone);
 
       return res.status(200).json({ mensagem: "Usuário cadastrado com sucesso !" });
     }
