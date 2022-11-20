@@ -25,6 +25,21 @@ class UsuarioController {
     }
   }
 
+  static async verificaUsuarioExistente(req, res) {
+    const { cpf_cnpj, email, telefone } = req.body;
+
+    const usuarioExistente = await database.Usuarios.findAndCountAll({
+      where: {
+        [Op.or]: { cpf_cnpj, email, telefone },
+      }
+    });
+
+    if (usuarioExistente.count > 0) {
+      return res.status(500).json({ mensagem: "Já existe um usuário com este email, cpf ou telefone!" });
+    }
+    return res.status(200).json({ mensagem: "Usuário válido para cadastro !" });
+  }
+
   static async criaUsuario(req, res) {
     const { nome, email, telefone, cpf_cnpj, senha, confirma_senha } = req.body;
     const dataAtual = new Date();
@@ -33,12 +48,12 @@ class UsuarioController {
 
     const usuarioExistente = await database.Usuarios.findAndCountAll({
       where: {
-        [Op.or]: { cpf_cnpj, email },
+        [Op.or]: { cpf_cnpj, email, telefone },
       }
     });
 
     if (usuarioExistente.count > 0) {
-      return res.status(500).json({ mensagem: "Já existe um usuário com este email ou cnpj !" });
+      return res.status(500).json({ mensagem: "Já existe um usuário com este email, cpf ou telefone!" });
     }
 
     try {

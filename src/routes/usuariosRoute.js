@@ -12,6 +12,7 @@ const router = Router();
 
 //Cadastro
 router.get('/cadastro', UsuarioController.index);
+router.post('/verificaCadastro', UsuarioController.verificaUsuarioExistente);
 router.post('/cadastro', UsuarioController.criaUsuario);
 
 //Login

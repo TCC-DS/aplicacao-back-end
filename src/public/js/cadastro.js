@@ -8,7 +8,13 @@ new jBox('Tooltip', {
   content: `<p>O nome deve seguir as seguintes características:<br>Não deve conter caracteres especiais: ('!@#$%&*_-+="|\(){}[]:;<>,.? /)<br>Deve começar com letras maiúsculas<br>Deve haver nome e sobrenome`
 });
 
-
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 2500,
+  timerProgressBar: true,
+});
 
 function validaNome(elemento) {
   let regexNome = (nome) => {
@@ -56,7 +62,7 @@ function validaSenha(elemento) {
   }
 }
 
-function validaComfirmaSenha(elemento) {
+function validaConfirmaSenha(elemento) {
 
   $(elemento).css("border-color", "#dde4e8")
 
@@ -135,7 +141,7 @@ function validaCep(elemento) {
 function validaCartao(elemento) {
   $(elemento).css("border-color", "#dde4e8")
 
-  if (elemento.value.length < 17) {
+  if (elemento.value.length < 19) {
     $(elemento).css("border-color", "red")
   }
   else {
@@ -197,33 +203,56 @@ async function realizaCadastro(nome, email, telefone, cpf, senha, confirmaSenha)
       timer: 1500,
       timerProgressBar: true,
       didOpen: setTimeout(() => {
-        window.location.href = 'http://localhost:3333/'
+        window.location.href = 'http://localhost:3333/login'
       }, 1600)
     });
-
-    mudaStatusBarraProgresso();
 
     Toast.fire({
       icon: 'success',
       title: requisicao.data.mensagem
     });
 
+    mudaStatusBarraProgresso();
+
+    return true;
   }
   catch (erro) {
-    const Toast = Swal.mixin({
-      toast: true,
-      position: 'top-end',
-      showConfirmButton: false,
-      timer: 2500,
-      timerProgressBar: true,
-    });
-
     Toast.fire({
       icon: 'error',
       title: '',
       text: erro.response.data.mensagem,
     })
+    return false;
   }
+}
+
+async function verificaCadastro(email, cpf, telefone) {
+  const dados = {
+    email: email,
+    cpf_cnpj: cpf,
+    telefone: telefone
+  };
+
+  try {
+    const requisicao = await axios.post('/verificaCadastro', dados);
+
+    console.log(requisicao)
+
+    Toast.fire({
+      icon: 'success',
+      title: 'Campos preenchidos corretamente !'
+    });
+    return true;
+  }
+  catch (erro) {
+    Toast.fire({
+      icon: 'error',
+      title: '',
+      text: erro.response.data.mensagem,
+    })
+    return false;
+  }
+
 }
 
 function verificaSelects() {
@@ -236,13 +265,7 @@ function verificaSelects() {
 
 function verificaPreenchimentoUsuario(qtdCampos) {
   let camposValidos = 0;
-  const Toast = Swal.mixin({
-    toast: true,
-    position: 'top-end',
-    showConfirmButton: false,
-    timer: 2500,
-    timerProgressBar: true,
-  });
+
   $('input').each(function () {
     if ($(this).css('border-color') == 'rgb(255, 0, 0)') {
       Toast.fire({
@@ -284,8 +307,12 @@ function mudaStatusBarraProgresso() {
   $(".li-barra-progresso").addClass("inativo");
 }
 
-$("#btn-usuario").click(() => {
-  if (verificaPreenchimentoUsuario(6)) {
+$("#btn-usuario").click(async () => {
+  const email = $("#email").val();
+  const cpf = String($("#cpf").val()).replace(/[@!#$%^&*()/\\?.-]/g, '').replace(/\s/g, '');
+  const telefone = String($("#tel").val()).replace(/[@!#$%^&*()/\\?.-]/g, '').replace(/\s/g, '');
+
+  if (verificaPreenchimentoUsuario(6) && await verificaCadastro(email, cpf, telefone)) {
     mudaStatusBarraProgresso();
     $("#formulario_usuario").css("display", "none");
     $("#formulario_pagamento").css("display", "");
@@ -293,7 +320,7 @@ $("#btn-usuario").click(() => {
   }
 });
 
-$("#btn-pagamento").click(() => {
+$("#btn-pagamento").click(async () => {
   const nomeCompleto = String($("#nome").val()).trim();
   const email = $("#email").val();
   const senha = $("#senha").val();
@@ -301,18 +328,13 @@ $("#btn-pagamento").click(() => {
   const cpf = String($("#cpf").val()).replace(/[@!#$%^&*()/\\?.-]/g, '').replace(/\s/g, '');
   const telefone = String($("#tel").val()).replace(/[@!#$%^&*()/\\?.-]/g, '').replace(/\s/g, '');
 
-  console.log(nomeCompleto)
-  console.log(cpf)
-  console.log(telefone)
-
-  if (verificaPreenchimentoUsuario(4) && verificaSelects()) {
+  if (verificaPreenchimentoUsuario(4) && verificaSelects() &&
+    await realizaCadastro(nomeCompleto, email, telefone, cpf, senha, confirmaSenha)) {
     mudaStatusBarraProgresso();
-    realizaCadastro(nomeCompleto, email, telefone, cpf, senha, confirmaSenha);
   }
-
 });
 
-$('.olhos').click(function () {
+$(".olhos").click(function () {
   console.log("teste")
   if ($(this).hasClass('olho-aberto')) {
     $(this).removeClass('olho-aberto');
@@ -351,6 +373,3 @@ $(document).ready(() => {
   $("#tel").mask('(00) 00000-0000');
   $("#data").mask('00/0000');
 })
-
-
-
