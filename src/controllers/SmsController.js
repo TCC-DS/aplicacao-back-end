@@ -1,16 +1,19 @@
-const { Client, TextContent } = require("@zenvia/sdk");
-const key = new Client('eaQiR-lrjhV025d1BHO2_OqMBH5hUXVfLU9V');
-const msg = key.getChannel('sms');
+const accountSid = "AC03ad1848ba2b4ec2c58eab73fbc187fe";
+const authToken = "c98c43172a075b41939b59d5e0ca11be";
+const client = require('twilio')(accountSid, authToken);
+
 
 class SmsController {
   static async msgBoasVindas(telefone) {
-    const content = new TextContent('Que bom ter você com a gente! 💙');
-    const enviaMsg = await msg.sendMessage('+5519995985318', `+55${telefone}`, content);
 
-    if (enviaMsg.erro) {
-      console.log("erro no envio da mensagem !");
-    }
-    return console.log("Mensagem enviada !");
+    client.messages
+      .create({
+        body: 'Que bom ter você com a gente! 💙\nAgradecemos por ter contratado os nossos serviços.\nPara realizar o cadastro efetivo da sua empresa iremos entrar em contato com você no prazo de 48 horas.\n Muito obrigado pela confiança !!',
+        from: '+13466332935',
+        to: `+55${telefone}`
+      })
+      .then(message => console.log("sms enviado com sucesso para" + numero + " id " + message.sid))
+      .catch(erro => console.log("sms não enviado para " + numero + " erro " + erro))
   }
 }
 
