@@ -10,7 +10,7 @@
     display: flex;
     justify-content: center;
     gap: 2rem;
-    width: 100vw;
+    width: 95vw;
     background-image: url('https://images.squarespace-cdn.com/content/v1/5af526957c932741bf200559/1605757594818-V22N3LKKRFG83AQ4NNRX/bg-shapes-test-flipped.png?format=2500w');
     background-repeat: no-repeat;
     background-clip: border-box;
