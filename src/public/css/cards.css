@@ -119,3 +119,26 @@
     z-index: -1;
     position: absolute;
 }
+
+.div-desconto{
+    position: relative;
+}
+
+.texto-desconto {
+    position: absolute;
+    width: 9rem;
+    bottom:2rem;
+    left: 2.6rem;
+    font-size: .9rem;
+    background-color: #377dff;
+    border-radius: 18px;
+    color: #fff;
+    text-align: center;
+    padding: 0.2rem;
+}
+
+.seta-desconto {
+    position: absolute;
+    left: 1rem;
+    bottom: 2rem;
+}
