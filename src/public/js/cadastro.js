@@ -1,20 +1,25 @@
-var mensagemErro1 = document.getElementById('erro1');
-var mensagemErro2 = document.getElementById('erro2');
-var mensagemErro3 = document.getElementById('erro3');
-var mensagemErro4 = document.getElementById('erro4');
-var mensagemErro5 = document.getElementById('erro5');
-var mensagemErro6 = document.getElementById('erro6');
-var mensagemErro7 = document.getElementById('erro7');
-var senha = document.getElementById('senha');
+new jBox('Tooltip', {
+  attach: '.tooltip-senha',
+  content: `<p>A senha deve conter as três das seguintes características:<br>Caracteres especiais: ('~!@#$%^&*_-+="|\(){}[]:;<>,.? /)<br>Letras minúsculas ('a' a 'z')<br>Letras maiúsculas ('A' a 'Z')<br>Números entre (0 a 9)<br>Mínimo 8 caracteres</p>`
+});
+
+new jBox('Tooltip', {
+  attach: '.tooltip-nome',
+  content: `<p>O nome deve seguir as seguintes características:<br>Não deve conter caracteres especiais: ('!@#$%&*_-+="|\(){}[]:;<>,.? /)<br>Deve começar com letras maiúsculas<br>Deve haver nome e sobrenome`
+});
 
 function validaNome(elemento) {
+  let regexNome = (nome) => {
+    return nome.match(/^[A-ZÀ-Ÿ][A-zÀ-ÿ']+\s([A-zÀ-ÿ']\s?)*[A-ZÀ-Ÿ][A-zÀ-ÿ']+$/)
+  }
+
   $(elemento).css("border-color", "#dde4e8");
 
-  if (elemento.value.length < 8) {
-    $(elemento).css("border-color", "red");
+  if (regexNome(elemento.value)) {
+    $(elemento).css("border-color", "#1CC88A");
   }
   else {
-    $(elemento).css("border-color", "#1CC88A");
+    $(elemento).css("border-color", "red");
   }
 }
 
@@ -137,20 +142,24 @@ function validaCartao(elemento) {
 }
 
 function validaCvv(elemento) {
+
   $(elemento).css("border-color", "#dde4e8")
 
-  if (elemento.value.length < 3) {
-    $(elemento).css("border-color", "red")
-  }
-  else {
+  if (elemento.value == "" || elemento.value.length < 3) {
+    $(elemento).css("border-color", "red");
+  } else {
     $(elemento).css("border-color", "#1CC88A");
   }
 }
 
 function validaDataCartao(elemento) {
+  const anoAtual = new Date().getFullYear();
+  const dataArray = elemento.value.split("/")
+
   $(elemento).css("border-color", "#dde4e8")
 
-  if (elemento.value.length < 7) {
+  if (parseInt(dataArray[0]) == 0 || parseInt(dataArray[0]) > 12 ||
+    parseInt(dataArray[1]) < anoAtual || dataArray.length < 2) {
     $(elemento).css("border-color", "red")
   }
   else {
@@ -283,22 +292,21 @@ $("#btn-usuario").click(() => {
 });
 
 $("#btn-pagamento").click(() => {
-  const nomeCompleto = $("#nome").val();
+  const nomeCompleto = String($("#nome").val()).trim();
   const email = $("#email").val();
   const senha = $("#senha").val();
   const confirmaSenha = $("#confirmasenha").val();
-  const cpf = $("#cpf").val();
-  const telefone = $("#tel").val();
+  const cpf = String($("#cpf").val()).replace(/[@!#$%^&*()/\\?.-]/g, '').replace(/\s/g, '');
+  const telefone = String($("#tel").val()).replace(/[@!#$%^&*()/\\?.-]/g, '').replace(/\s/g, '');
 
-  console.log(verificaPreenchimentoUsuario(4))
-  console.log(verificaSelects())
-
+  console.log(nomeCompleto)
+  console.log(cpf)
+  console.log(telefone)
 
   if (verificaPreenchimentoUsuario(4) && verificaSelects()) {
     mudaStatusBarraProgresso();
     realizaCadastro(nomeCompleto, email, telefone, cpf, senha, confirmaSenha);
   }
-
 
 });
 

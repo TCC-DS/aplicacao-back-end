@@ -1,3 +1,8 @@
+.label{
+  display: flex;
+  gap: .5rem;
+}
+
 .cadastro {
   position: relative;
   min-height: 70vh;
@@ -17,7 +22,6 @@
   overflow: hidden;
   counter-reset: step;
   width: 100%;
-
   margin-top: 1rem;
 }
 .li-barra-progresso {
@@ -82,7 +86,7 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin-left: 4rem;
+  margin-left: 2.5%;
 }
 
 
@@ -102,7 +106,7 @@
   padding-bottom: .4rem;  
   color: #a2b0b8;
   font-weight: 600;
-  font-size: .7rem;
+  font-size: .8rem;
 }
 
 .cpf, .tel {
