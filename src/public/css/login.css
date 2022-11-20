@@ -101,7 +101,7 @@ p > a {
 .vizualizador {
   width: 1.5rem;
   position: relative;
-  bottom: 30px;
+  bottom: 1.95rem;
   left: 93%;
   opacity: 50%;
   cursor: pointer;

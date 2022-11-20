@@ -8,6 +8,8 @@ new jBox('Tooltip', {
   content: `<p>O nome deve seguir as seguintes características:<br>Não deve conter caracteres especiais: ('!@#$%&*_-+="|\(){}[]:;<>,.? /)<br>Deve começar com letras maiúsculas<br>Deve haver nome e sobrenome`
 });
 
+
+
 function validaNome(elemento) {
   let regexNome = (nome) => {
     return nome.match(/^[A-ZÀ-Ÿ][A-zÀ-ÿ']+\s([A-zÀ-ÿ']\s?)*[A-ZÀ-Ÿ][A-zÀ-ÿ']+$/)
@@ -309,6 +311,23 @@ $("#btn-pagamento").click(() => {
   }
 
 });
+
+$('.olhos').click(function () {
+  console.log("teste")
+  if ($(this).hasClass('olho-aberto')) {
+    $(this).removeClass('olho-aberto');
+    $(this).attr("src", "/img/icons/olhos-abertos.svg");
+    $(this).addClass('olho-fechado');
+    $(this).siblings().attr('type', 'text');
+  }
+  else {
+    $(this).removeClass('olho-fechado');
+    $(this).attr("src", "/img/icons/olhos-fechados.svg");
+    $(this).addClass('olho-aberto');
+    $(this).siblings().attr('type', 'password');
+  }
+});
+
 
 $(".mudaValor").change(() => {
   const planos = {

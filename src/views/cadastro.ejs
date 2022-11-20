@@ -52,16 +52,22 @@
                 <label for="senha">SENHA</label>
                 <i class='bx bx-info-circle tooltip-senha'></i>
               </div>
-              <input type="password" name="senha" id="senha" class="formulario_usuario" required
-                onblur="validaSenha(this);">
+              <div>
+                <input type="password" name="senha" id="senha" class="formulario_usuario" required
+                  onblur="validaSenha(this);">
+                <img src="/img/icons/olhos-fechados.svg" class="vizualizador olho-aberto olhos"></img>
+              </div>
             </div>
             <div class="input-formulario">
               <div class="label">
                 <label for="confirmasenha">CONFIRMAR SENHA</label>
                 <i class='bx bx-info-circle tooltip-senha'></i>
               </div>
-              <input type="password" name="confirmasenha" id="confirmasenha" class="formulario_usuario" required
-                onblur="validaComfirmaSenha(this);">
+              <div>
+                <input type="password" name="confirmasenha" id="confirmasenha" class="formulario_usuario" required
+                  onblur="validaComfirmaSenha(this);">
+                <img src="/img/icons/olhos-fechados.svg" class="vizualizador olho-aberto olhos"></img>
+              </div>
             </div>
             <div class="input-formulario-2">
               <div class="campos">
@@ -144,7 +150,6 @@
     </div>
     <%- include('./partials/rodape.ejs') %>
       <script src="js/cadastro.js"></script>
-
 </body>
 
 </html>

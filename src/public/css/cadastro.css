@@ -176,3 +176,14 @@ p > a {
 .img-cadastro {
   width: 35%;
 }
+
+/* imagem vizualizar senha */
+
+.vizualizador {
+  width: 1.5rem;
+  position: relative;
+  bottom: 1.95rem;
+  left: 93%;
+  opacity: 50%;
+  cursor: pointer;
+}
